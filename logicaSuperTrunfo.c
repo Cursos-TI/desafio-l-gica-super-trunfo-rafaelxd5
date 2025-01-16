@@ -1,43 +1,89 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 2 - Comparação das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de comparação de cartas de cidades. 
-// Siga os comentários para implementar cada parte do desafio.
+#define MAX_CIDADES 100
 
 int main() {
-    // Definição das variáveis para armazenar as propriedades das cidades
-    // Você pode utilizar o código do primeiro desafio
+    char nomes[MAX_CIDADES][50];      // Nome da cidade
+    char estados[MAX_CIDADES][3];    // Sigla do estado
+    int populacoes[MAX_CIDADES];     // População
+    float areas[MAX_CIDADES];        // Área km2
+    float pibs[MAX_CIDADES];         // PIB
+    int pontosTuristicos[MAX_CIDADES]; // Pontos turisticos
+    int contador = 0;                // Contador de cidades cadastradas
+    int opcao;
+    float densidade;
+    float pibcapita;
 
-    
-    // Cadastro das Cartas:
-    // Implemente a lógica para solicitar ao usuário que insira os dados das cidades
-    // utilizando a função scanf para capturar as entradas.
-    // utilize o código do primeiro desafio
+    do {
 
-    // Exemplo:
-    // printf("Digite o código da cidade: ");
-    // scanf("%s", codigo);
-    // 
-    // (Repita para cada propriedade)
+        // Menu inicial
+        printf("\n----- Super Trunfo -----\n");
+        printf("1. Cadastrar Cidade\n");
+        printf("2. Visualizar Cartas\n");
+        printf("0. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
 
-    // Comparação de Cartas:
-    // Desenvolva a lógica de comparação entre duas cartas.
-    // Utilize estruturas de decisão como if, if-else para comparar atributos como população, área, PIB, etc.
+        if (opcao == 1) { // Cadastrar Cidade
+            if (contador >= MAX_CIDADES) {
+                printf("Limite de cidades atingido!\n");
+                continue;
+            }
 
-    // Exemplo:
-    // if (populacaoA > populacaoB) {
-    //     printf("Cidade 1 tem maior população.\n");
-    // } else {
-    //     printf("Cidade 2 tem maior população.\n");
-    // }
+            // Preencher dados da nova cidade
+            printf("\n--- Cadastro de Cidade ---\n");
+            printf("Nome da cidade: ");
+            scanf("%49s", nomes[contador]);
 
-    // Exibição dos Resultados:
-    // Após realizar as comparações, exiba os resultados para o usuário.
-    // Certifique-se de que o sistema mostre claramente qual carta venceu e com base em qual atributo.
+            printf("Estado : ");
+            scanf("%2s", estados[contador]);
 
-    // Exemplo:
-    // printf("A cidade vencedora é: %s\n", cidadeVencedora);
+            printf("Populacao: ");
+            scanf("%d", &populacoes[contador]);
 
+            printf("Area km2: ");
+            scanf("%f", &areas[contador]);
+
+            printf("PIB: ");
+            scanf("%f", &pibs[contador]);
+
+            printf("Pontos Turisticos: ");
+            scanf("%d", &pontosTuristicos[contador]);
+
+            //conta cidade para salvar cada uma em um array
+            contador = contador + 1;
+
+            printf("Cidade cadastrada com sucesso!\n");
+
+        } else if (opcao == 2) { // Visualizar Cartas
+            if (contador == 0) {
+                printf("\nNao ha cidades cadastradas!\n");
+            } else {
+                printf("\n--- Cartas Cadastradas ---\n");
+                for (int i = 0; i < contador; i = i + 1) {
+                    printf("\nCarta %d:\n", i + 1);
+                    printf("Nome: %s\n", nomes[i]);
+                    printf("Estado: %s\n", estados[i]);
+                    printf("Populacao: %d habitantes\n", populacoes[i]);
+                    printf("Area: %.2f km²\n", areas[i]);
+                    printf("PIB: %.2f\n", pibs[i]);
+                    printf("Pontos Turisticos: %d\n", pontosTuristicos[i]);
+
+                    // Cálculo da densidade populacional
+                    densidade = populacoes[i]/areas[i];
+
+                     // Cálculo do PIB per capita
+                    pibcapita = pibs[i] / populacoes[i];
+
+                    printf("densidade: %.2f\n",densidade);
+                    printf("pib per capita: %.2f\n",pibcapita);
+                }
+            }
+        } else if (opcao != 0) {
+            printf("Opcao invalida!\n");
+        }
+    } while (opcao != 0);
+
+    printf("Programa encerrado.\n");
     return 0;
 }
