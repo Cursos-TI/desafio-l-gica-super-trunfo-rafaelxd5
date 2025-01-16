@@ -11,12 +11,13 @@ int main() {
     int pontosTuristicos[MAX_CIDADES]; // Pontos turisticos
     int contador = 0;                // Contador de cidades cadastradas
     int opcao;
+    int opcaosubmenu;
     float densidade;
     float pibcapita;
 
     do {
 
-        // Menu inicial
+        // Menu de jogar
         printf("\n----- Super Trunfo -----\n");
         printf("1. Cadastrar Cidade\n");
         printf("2. Visualizar Cartas\n");
@@ -84,14 +85,25 @@ int main() {
             if (contador == 0) {
                 printf("\nNao ha cidades cadastradas!\n");
             } else {
-                printf("\n--- Carta ganhadora ---\n");
+                printf("\n--- Menu do jogo ---\n");
+                
+                 // Menu de jogar
+                 printf("\n----- Selecione a categoira -----\n");
+                 printf("1. maior populacao\n");
+                 printf("2. mais pontos turisticos\n");
+                 printf("0. Sair\n");
+                 printf("Escolha uma opcao: ");
+                 scanf("%d", &opcaosubmenu);
+                 
+                 if (opcaosubmenu == 1){
+                     
+                     printf("\n--- Ganhadora ---\n");
+                     
+                     int maiorpop = populacoes[0];
+                     int indiceMaior = 0;
                 
                 
-                int maiorpop = populacoes[0];
-                int indiceMaior = 0;
-                
-                
-                for (int i = 1; i < contador; i++){
+                    for (int i = 1; i < contador; i++){
                     
                     if(populacoes[i]>maiorpop){
                         
@@ -101,8 +113,30 @@ int main() {
                     };
                     
                 }
+                     printf("População maior é %d da carta %d", maiorpop,indiceMaior);
+                     
+            } else if (opcaosubmenu == 2){
                 
-                printf("População maior é %d da carta %d", maiorpop,indiceMaior);
+                 int maiort = pontosTuristicos[0];
+                 int indicet = 0;
+                
+                
+                 for (int i = 1; i < contador; i++){
+                    
+                    if(pontosTuristicos[i]>maiort){
+                        
+                        maiort = pontosTuristicos[i];
+                        indicet = i;
+                        
+                    };
+                    
+                }
+                     printf("Mais pontos turisticos é %d da carta %d", maiort,indicet);
+                
+                
+            }
+                
+        
                 
             }
         } else if (opcao != 0) {
