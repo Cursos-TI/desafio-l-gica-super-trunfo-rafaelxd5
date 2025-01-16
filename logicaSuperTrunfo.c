@@ -20,6 +20,7 @@ int main() {
         printf("\n----- Super Trunfo -----\n");
         printf("1. Cadastrar Cidade\n");
         printf("2. Visualizar Cartas\n");
+        printf("3. Jogar\n");
         printf("0. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -78,6 +79,31 @@ int main() {
                     printf("densidade: %.2f\n",densidade);
                     printf("pib per capita: %.2f\n",pibcapita);
                 }
+            }
+        } else if (opcao == 3) { // Visualizar Cartas
+            if (contador == 0) {
+                printf("\nNao ha cidades cadastradas!\n");
+            } else {
+                printf("\n--- Carta ganhadora ---\n");
+                
+                
+                int maiorpop = populacoes[0];
+                int indiceMaior = 0;
+                
+                
+                for (int i = 1; i < contador; i++){
+                    
+                    if(populacoes[i]>maiorpop){
+                        
+                        maiorpop = populacoes[i];
+                        indiceMaior = i;
+                        
+                    };
+                    
+                }
+                
+                printf("População maior é %d da carta %d", maiorpop,indiceMaior);
+                
             }
         } else if (opcao != 0) {
             printf("Opcao invalida!\n");
